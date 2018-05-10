@@ -5,7 +5,7 @@ int main (){
 	int i=0, x=0;
 	char num[300];
 	
-	printf("Entre com a string: \n\n");
+	printf("Insira uma string qualquer: \n");
 	fgets(num,300,stdin);
 	
 	while(num[i]){
@@ -19,7 +19,7 @@ int main (){
 		i++;
 	}
 	
-	printf("Nova string: %d",x);
+	printf("String formatada: %d",x);
 	
 	return 0;
 }
