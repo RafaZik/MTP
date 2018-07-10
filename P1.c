@@ -1,4 +1,4 @@
-//Rafael Ant�nio-11721EEL015
+//Rafael Antonio-11721EEL015
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
@@ -7,14 +7,14 @@
 int main()
 {
 
-	setlocale(LC_ALL, "Portuguese");
+
     int estado, i=0, restri=0;
     char bits[256];
     char result;
     do
     {
         i=0;
-        printf("Insira o n�mero bin�rio a ser testado:");
+        printf("Insira o numero binario a ser testado:");
         scanf("%s", &bits);
         restri=0;
         while (bits[i] != '\0')
@@ -24,7 +24,7 @@ int main()
                  i++;
         }
         if(restri!=0)
-            printf("\nO n�mero n�o � bin�rio, digiteoutro n�mero por favor.\n");
+            printf("\nO numero nao � binario, digiteoutro numero por favor.\n");
     }
     while(restri!=0);
 
@@ -48,12 +48,12 @@ int main()
                 estado = 2;
             i++;
         }
-        printf("\n\nO estado final �: %d", estado);
-        printf("\nO n�mero testado foi: %s", bits);
+        printf("\n\nO estado final eh: %d", estado);
+        printf("\nO numero testado foi: %s", bits);
         if (estado == 0)
-            printf("\nO n�mero inserido � m�ltiplo de 3.");
+            printf("\nO numero inserido e multiplo de 3.");
         if (estado != 0)
-            printf("\nO n�mero inserido n�o � m�ltiplo de 3.");
+            printf("\nO numero inserido nao eh multiplo de 3.");
     }
     if(bits[0]=='1')
     {
@@ -75,13 +75,12 @@ int main()
                 estado = 2;
             i++;
         }
-        printf("\n\nO estado final �: %d", estado);
-        printf("\nO n�mero testado foi: %s", bits);
+        printf("\n\nO estado final e: %d", estado);
+        printf("\nO numero testado foi: %s", bits);
         if (estado==0)
-            printf("\nO n�mero inserido � m�ltiplo de 3.");
+            printf("\nO numero inserido eh multiplo de 3.");
         if (estado != 0)
-            printf("\nO n�mero inserido n�o � m�ltiplo de 3.");
+            printf("\nO numero inserido nao eh multiplo de 3.");
     }
     return 0;
 }
-//Rafael Ant�nio-11721EEL015
