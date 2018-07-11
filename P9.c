@@ -1,104 +1,73 @@
 //Rafael Antônio Lima Hipólito-11721EEL015
-#include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
-
-struct dimensao
-{
-	float largura;
-	float profundidade;
-	float altura;
-};
-
-struct produto
-{
-	char nome[64];
-	float preco;
-	struct dimensao end;
-};
-void cadastro(struct produto vet_produto[], int i){
-	printf("\nDigite o nome:");
-	fgets(vet_produto[i].nome, 64, stdin);
-	printf("\nDigite o preco:");
-	scanf("%f", &vet_produto[i].preco);
-	getchar();
-	printf("\nDigite a largura:");
-	scanf("%f", &vet_produto[i].end.largura);
-	getchar();
-	printf("\nDigite a profundidade:");
-	scanf("%f", &vet_produto[i].end.profundidade);
-	getchar();
-	printf("\nDigite a altura:");
-	scanf("%f", &vet_produto[i].end.altura);
-	getchar();
-}
-void pesquisa(struct produto vet_produto[], int i){
-	char condicional[64];
-	strcpy(condicional, " ");
-	if(strcmp(condicional, vet_produto[i].nome) == 0){
-		printf("\nProduto nao cadastrado!");
+#include <string.h>
+typedef
+	struct Dimensoes
+	{
+		float largura;
+		float profundidade;
+		float altura;
 	}
-	else{
-		printf("\n %s, R$ %.2f, L: %.2fm x P: %.2fm x A: %.2fm",vet_produto[i].nome, vet_produto[i].preco, vet_produto[i].end.largura, vet_produto[i].end.profundidade, vet_produto[i].end.altura);
+Dimensoes_m;
+typedef
+	struct Produto
+	{
+		char nome[64];
+		float preco;
+		Dimensoes_m dimensoes;
 	}
+Produto_m;
+void cadastro(int x, Produto_m p[2])
+{
+	printf("\nNome: ");
+	fgets(p[x].nome, 64, stdin); 
+	p[x].nome[strlen(p[x].nome)-1] = '\0';
+	printf("\nPreco: ");
+	scanf("%f", &p[x].preco);
+	getchar();
+	printf("\nLargura: ");
+	scanf("%f", &p[x].dimensoes.largura);
+	getchar();
+	printf("\nProfundidade: ");
+	scanf("%f", &p[x].dimensoes.profundidade);
+	getchar();
+	printf("\nAltura: ");
+	scanf("%f", &p[x].dimensoes.altura);
+	getchar();
 }
 int main()
 {
-	struct produto vet_produto[2];
-	int opcao, produto, num_produto = 0;
-	strcpy(vet_produto[0].nome, " ");
-	strcpy(vet_produto[1].nome, " ");
-	do{
-	printf("\n\n1 - Cadastro\n2 - Consulta\n3 - Sair\n\nDigite uma opcao: ");
-	scanf("%d", &opcao);
-	getchar();  
-	switch(opcao)
+	int op_1=0, op_2=0, i=0;
+	char aux[64];
+	Produto_m p[2];
+	for (i=0; i<2; i++)
+		p[i].nome[0] = '\0';
+	do
 	{
-		case 1: 
-			printf("\nEscolha o produto 1 ou 2:");
-			scanf("%d", &produto);
-			getchar();
-			switch(produto){
-				case 1:
-					num_produto = produto -1;
-					cadastro(vet_produto, num_produto);
-					printf("\nProduto 1 cadastrado com sucesso");
-					num_produto = 0;
-					break;
-				case 2:
-					num_produto = produto -1;
-					cadastro(vet_produto, num_produto);
-					printf("\nProduto 2 cadastrado com sucesso");
-					num_produto = 0;
-					break;
-				default:
-					break;
-			}
-			break;
-		case 2:	
-			printf("\nEscolha o produto 1 ou 2:");
-			scanf("%d", &produto);
-			getchar();
-			switch(produto){
-				case 1:
-					num_produto = produto -1;
-					pesquisa(vet_produto, num_produto);
-					num_produto = 0;
-					break;
-				case 2:
-					num_produto = produto -1;
-					pesquisa(vet_produto, num_produto);
-					num_produto = 0;
-					break;
-				default:
-					break;
-			}
-			break;
-		case 3:
-			return 0;
-		default: 
-			break;
-	}	
-	}while(opcao != 4);
+		printf("\n1 - Cadastro\n2 - Consulta\n....");
+		scanf("%d", &op_1);
+		getchar();
+		switch (op_1)
+		{
+			case 1:
+				printf("\n....1 - Produto 1\n....2 - Produto 2\n........");
+				scanf("%d", &op_2);
+				getchar();
+				printf("\nCadastre as informacoes do produto %d: ", op_2);
+				cadastro(op_2-1, p);
+				printf("\nProduto %d cadastrado com sucesso", op_2);
+				break;
+			case 2:
+				printf("\nProduto a ser procurado: ");
+				scanf("%d", &op_2);
+				getchar();
+				if (strlen(p[op_2-1].nome) == 0)
+					printf("\nProduto nao cadastrado!\n");
+				else
+					printf("\n%s, R$ %.2f, L: %.2fm x P: %.2fm x A: %.2fm", p[op_2-1].nome, p[op_2-1].preco, p[op_2-1].dimensoes.largura, p[op_2-1].dimensoes.profundidade, p[op_2-1].dimensoes.altura);
+				break;
+		}
+	}while (op_1 == 1 || op_1 == 2);
 	return 0;
 }
