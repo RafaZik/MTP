@@ -1,86 +1,45 @@
 //Rafael Antonio-11721EEL015
-#include <stdlib.h>
-#include <string.h>
 #include <stdio.h>
-#include <locale.h>
-
 int main()
 {
-
-
-    int estado, i=0, restri=0;
-    char bits[256];
-    char result;
-    do
-    {
-        i=0;
-        printf("Insira o numero binario a ser testado:");
-        scanf("%s", &bits);
-        restri=0;
-        while (bits[i] != '\0')
-        {
-            if( bits[i]!= '0' && bits[i]!='1' )
-                restri++;
-                 i++;
-        }
-        if(restri!=0)
-            printf("\nO numero nao � binario, digiteoutro numero por favor.\n");
-    }
-    while(restri!=0);
-
-    if (bits[0]=='0')
-    {
-        estado = 0;
-        i=1;
-        while(bits[i] != '\0')
-        {
-            if ( estado == 0 && bits[i] == '0')
-                estado = 0;
-            else if( estado == 0 && bits[i] == '1')
-                estado = 1;
-            else if( estado == 1 && bits[i] == '0')
-                estado = 2;
-            else if( estado == 1 && bits[i] == '1')
-                estado = 0;
-            else if( estado == 2 && bits[i] == '0')
-                estado = 1;
-            else if( estado == 2 && bits[i] == '1')
-                estado = 2;
-            i++;
-        }
-        printf("\n\nO estado final eh: %d", estado);
-        printf("\nO numero testado foi: %s", bits);
-        if (estado == 0)
-            printf("\nO numero inserido e multiplo de 3.");
-        if (estado != 0)
-            printf("\nO numero inserido nao eh multiplo de 3.");
-    }
-    if(bits[0]=='1')
-    {
-        estado = 1;
-        i=1;
-        while(bits[i] != '\0')
-        {
-            if ( estado == 0 && bits[i] == '0')
-                estado = 0;
-            else if( estado == 0 && bits[i] == '1')
-                estado = 1;
-            else if( estado == 1 && bits[i] == '0')
-                estado = 2;
-            else if( estado == 1 && bits[i] == '1')
-                estado = 0;
-            else if( estado == 2 && bits[i] == '0')
-                estado = 1;
-            else if( estado == 2 && bits[i] == '1')
-                estado = 2;
-            i++;
-        }
-        printf("\n\nO estado final e: %d", estado);
-        printf("\nO numero testado foi: %s", bits);
-        if (estado==0)
-            printf("\nO numero inserido eh multiplo de 3.");
-        if (estado != 0)
-            printf("\nO numero inserido nao eh multiplo de 3.");
-    }
-    return 0;
+	int est=0, i=0, j=0;
+	char bits[256];
+	while (j>=0)
+	{
+		j=0;
+		printf("Insira um numero valido para que seja determinado se este e multiplo 3: ");
+	    scanf("%s", bits);
+	    for (i=0; bits[i]!='\0'; i++)
+	    {
+	    	if (bits[i]!='0' && bits[i]!='1')
+	    	j++;
+		}
+		j--;
+	}
+	for (i=0; bits[i]!='\0'; i++)
+	{
+		if (bits[i]=='0')
+		{
+			if (est==0)
+				est=0;
+			else if (est==2)
+			    est=1;
+			else
+			    est=2;
+		}
+		else if (bits[i]=='1')
+		{
+			if (est==2)
+			    est=2;
+			else if (est==0)
+			    est=1;
+			else
+			    est=0;
+		}
+	}
+	if (est==0)
+	    printf("\n%s e um multiplo de 3", bits);
+	else
+	    printf("\n%s nao um multiplo de 3", bits);
+	return 0;
 }
